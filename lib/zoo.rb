@@ -1,5 +1,3 @@
-require 'pry'
-
 class ZooAtCapacity < StandardError
 end
 
@@ -47,17 +45,14 @@ class Zoo
 
   def visit
     visit_string = ""
-
     @employees.each do |employee|
       visit_string += "#{employee.name} waved hello!\n"
     end
-
     @cages.each do |cage|
       if cage.animal != nil
         visit_string += "#{cage.animal.speak}\n"
       end
     end
-
     visit_string
   end
 end
