@@ -1,3 +1,8 @@
+require 'pry'
+
+class ZooAtCapacity < StandardError
+end
+
 class Zoo
   attr_reader :name, :open_date, :closing_date, :cages, :employees
 
@@ -25,5 +30,34 @@ class Zoo
     else
       true
     end
+  end
+
+  def add_animal(incoming_animal)
+    if @cages.all? { |cage| cage.animal != nil}
+      raise ZooAtCapacity
+    else
+      @cages.each do |cage|
+        if cage.animal == nil
+          cage.animal = incoming_animal
+          break
+        end
+      end
+    end
+  end
+
+  def visit
+    visit_string = ""
+
+    @employees.each do |employee|
+      visit_string += "#{employee.name} waved hello!\n"
+    end
+
+    @cages.each do |cage|
+      if cage.animal != nil
+        visit_string += "#{cage.animal.speak}\n"
+      end
+    end
+
+    visit_string
   end
 end

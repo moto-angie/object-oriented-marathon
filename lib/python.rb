@@ -1,6 +1,6 @@
 class Python
   include Reptile
-  attr_reader :name
+  attr_reader :name, :speak
 
   def initialize(name)
     @name = name
